@@ -32,6 +32,8 @@ RUN apk add --no-cache \
 
 RUN ln -s /usr/bin/php84 /usr/bin/php
 
+RUN apk add --no-cache composer
+
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
 # Configure nginx - default server
