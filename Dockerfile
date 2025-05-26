@@ -1,6 +1,6 @@
 ARG ALPINE_VERSION=3.21
 FROM alpine:${ALPINE_VERSION}
-LABEL Maintainer="Tim de Pater <code@trafex.nl>"
+LABEL Maintainer="Akurosia Kamo"
 LABEL Description="Lightweight container with Nginx 1.26 & PHP 8.4 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/html
@@ -19,6 +19,7 @@ RUN apk add --no-cache \
   php84-intl \
   php84-mbstring \
   php84-mysqli \
+  php84-pdo_mysql \
   php84-opcache \
   php84-openssl \
   php84-phar \
