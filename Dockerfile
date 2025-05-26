@@ -5,9 +5,6 @@ LABEL Description="Lightweight container with Nginx 1.26 & PHP 8.4 based on Alpi
 # Setup document root
 WORKDIR /var/www/html
 
-# INSTALL COMPOSER
-RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
-RUN composer require phpmailer/phpmailer
 # Install packages and remove default server definition
 RUN apk add --no-cache \
   curl \
@@ -31,9 +28,11 @@ RUN apk add --no-cache \
   php84-xml \
   php84-xmlreader \
   php84-xmlwriter \
+  composer \
   supervisor
 
 RUN ln -s /usr/bin/php84 /usr/bin/php
+RUN composer require phpmailer/phpmailer
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
