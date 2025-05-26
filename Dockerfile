@@ -28,7 +28,6 @@ RUN apk add --no-cache \
   php84-xml \
   php84-xmlreader \
   php84-xmlwriter \
-  composer \
   supervisor
 
 RUN ln -s /usr/bin/php84 /usr/bin/php
