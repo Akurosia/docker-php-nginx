@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: ghcr.io/Akurosia/php-nginx
+  IMAGE_NAME: ghcr.io/akurosia/php-nginx
   IMAGE_TAG: ${{ github.sha }}
   DOCKER_BUILDKIT: 1
 
