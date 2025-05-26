@@ -32,7 +32,6 @@ RUN apk add --no-cache \
   supervisor
 
 RUN ln -s /usr/bin/php84 /usr/bin/php
-RUN composer require phpmailer/phpmailer
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
