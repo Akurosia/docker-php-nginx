@@ -6,8 +6,7 @@ LABEL Description="Lightweight container with Nginx 1.26 & PHP 8.4 based on Alpi
 WORKDIR /var/www/html
 
 # INSTALL COMPOSER
-RUN curl -s https://getcomposer.org/installer | php
-RUN alias composer='php composer.phar'
+RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 RUN composer require phpmailer/phpmailer
 # Install packages and remove default server definition
 RUN apk add --no-cache \
