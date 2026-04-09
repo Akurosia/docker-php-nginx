@@ -38,7 +38,6 @@ RUN apk add --no-cache \
   php85-mbstring \
   php85-mysqli \
   php85-pdo_mysql \
-  php85-opcache \
   php85-openssl \
   php85-phar \
   php85-session \
@@ -73,7 +72,7 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY config/conf.d /etc/nginx/conf.d/
 
 # Configure PHP-FPM
-ENV PHP_INI_DIR /etc/php85
+ENV PHP_INI_DIR=/etc/php85
 COPY config/fpm-pool.conf ${PHP_INI_DIR}/php-fpm.d/www.conf
 COPY config/php.ini ${PHP_INI_DIR}/conf.d/custom.ini
 
