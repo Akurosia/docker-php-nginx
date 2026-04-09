@@ -52,7 +52,6 @@ RUN apk add --update --no-cache python3 py3-pip && ln -sf python3 /usr/bin/pytho
 #RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools img2webp build twine PyGithub pandas openpyxl selenium pyaml requests IPy discord.py bs4 colorama pyopenssl tqdm unidecode image urllib3 flask pyinstaller Pillow construct pylint dictdiffer demjson3 gevent connexion flask_cors watchdog pysimplegui sty GitPython PyYAML requests natsort openpyxl python-dateutil gitpython fflogsapi PySimpleGUI dictdiffer Pyaml -U --break-system-packages
 RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku -U --break-system-packages
-RUN ln -s /usr/bin/php84 /usr/bin/php
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
