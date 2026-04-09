@@ -48,10 +48,10 @@ RUN apk add --no-cache \
   php84-xmlwriter \
   supervisor
 
-RUN apk add --update --no-cache python3 py3-pip && ln -sf python3 /usr/bin/python
-#RUN python3 -m ensurepip
+RUN apk add --update --no-cache python3 py3-pip build-base && ln -sf python3 /usr/bin/python
 RUN pip3 install --no-cache --upgrade pip setuptools img2webp -U --break-system-packages
 RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku -U --break-system-packages
+
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
