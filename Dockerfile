@@ -34,8 +34,8 @@ RUN apk add --no-cache \
   supervisor
 
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools img2webp build twine PyGithub pandas openpyxl selenium pyaml requests IPy discord.py bs4 colorama pyopenssl tqdm unidecode image urllib3 flask pyinstaller Pillow construct pylint dictdiffer demjson3 gevent connexion flask_cors watchdog pysimplegui sty GitPython netifaces PyYAML requests natsort openpyxl python-dateutil gitpython fflogsapi PySimpleGUI dictdiffer Pyaml
+RUN python3 -m ensurepip --break-system-packages
+RUN pip3 install --no-cache --upgrade pip setuptools img2webp build twine PyGithub pandas openpyxl selenium pyaml requests IPy discord.py bs4 colorama pyopenssl tqdm unidecode image urllib3 flask pyinstaller Pillow construct pylint dictdiffer demjson3 gevent connexion flask_cors watchdog pysimplegui sty GitPython netifaces PyYAML requests natsort openpyxl python-dateutil gitpython fflogsapi PySimpleGUI dictdiffer Pyaml --break-system-packages
 RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku -U --break-system-packages
 RUN ln -s /usr/bin/php84 /usr/bin/php
 
