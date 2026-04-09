@@ -50,6 +50,7 @@ RUN apk add --no-cache \
 RUN apk add --update --no-cache \
   python3 \
   py3-pip \
+  libwebp-tools \
   build-base \
   zlib-dev \
   jpeg-dev \
