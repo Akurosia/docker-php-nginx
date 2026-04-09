@@ -65,7 +65,7 @@ RUN apk add --update --no-cache \
 
 RUN pip3 install --no-cache --upgrade pip setuptools img2webp -U --break-system-packages
 RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku -U --break-system-packages
-
+RUN ln -sf /usr/bin/php84 /usr/bin/php
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
