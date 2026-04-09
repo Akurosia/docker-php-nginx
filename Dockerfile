@@ -1,7 +1,22 @@
-ARG ALPINE_VERSION=3.21
-FROM alpine:${ALPINE_VERSION}
-LABEL Maintainer="Akurosia Kamo"
-LABEL Description="Lightweight container with Nginx 1.26 & PHP 8.4 based on Alpine Linux."
+FROM alpine:3.23
+
+# Build metadata arguments
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+
+# OCI annotations
+LABEL org.opencontainers.image.created="${BUILD_DATE}"
+LABEL org.opencontainers.image.authors="Akurosia Kamo <akurosia@akurosia.de>"
+LABEL org.opencontainers.image.url="https://github.com/akurosia/docker-php-nginx"
+LABEL org.opencontainers.image.documentation="https://github.com/akurosia/docker-php-nginx"
+LABEL org.opencontainers.image.source="https://github.com/akurosia/docker-php-nginx"
+LABEL org.opencontainers.image.version="${VERSION}"
+LABEL org.opencontainers.image.revision="${VCS_REF}"
+LABEL org.opencontainers.image.vendor="TrafeX"
+LABEL org.opencontainers.image.title="PHP-FPM 8.4 & Nginx on Alpine Linux"
+LABEL org.opencontainers.image.description="Lightweight container with Nginx 1.28 & PHP 8.4 based on Alpine Linux."
+
 ENV PYTHONUNBUFFERED=1
 
 # Setup document root
@@ -33,8 +48,8 @@ RUN apk add --no-cache \
   php84-xmlwriter \
   supervisor
 
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip --break-system-packages
+RUN apk add --update --no-cache python3 py3-pip && ln -sf python3 /usr/bin/python
+#RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools img2webp build twine PyGithub pandas openpyxl selenium pyaml requests IPy discord.py bs4 colorama pyopenssl tqdm unidecode image urllib3 flask pyinstaller Pillow construct pylint dictdiffer demjson3 gevent connexion flask_cors watchdog pysimplegui sty GitPython netifaces PyYAML requests natsort openpyxl python-dateutil gitpython fflogsapi PySimpleGUI dictdiffer Pyaml --break-system-packages
 RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku -U --break-system-packages
 RUN ln -s /usr/bin/php84 /usr/bin/php
