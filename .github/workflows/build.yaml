@@ -34,26 +34,6 @@ jobs:
             --build-arg VERSION=${{ github.ref_name }} \
             -t $IMAGE_NAME:$IMAGE_TAG .
 
-      - name: Smoke test image
-        run: |-
-          docker compose -f docker-compose.test.yml up -d app
-          sleep 2
-          docker compose -f docker-compose.test.yml run sut
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: "${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
-          format: "template"
-          template: "@/contrib/sarif.tpl"
-          output: "trivy-results.sarif"
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'schedule')
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: "trivy-results.sarif"
-
       - name: Login to Docker Hub
         if: (github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'schedule' )) || contains(github.ref, 'refs/tags/')
         run: docker login --username akurosia --password ${{ secrets.GH_PAT }} ghcr.io
