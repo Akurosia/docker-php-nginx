@@ -48,7 +48,21 @@ RUN apk add --no-cache \
   php84-xmlwriter \
   supervisor
 
-RUN apk add --update --no-cache python3 py3-pip build-base && ln -sf python3 /usr/bin/python
+RUN apk add --update --no-cache \
+  python3 \
+  py3-pip \
+  build-base \
+  zlib-dev \
+  jpeg-dev \
+  freetype-dev \
+  lcms2-dev \
+  openjpeg-dev \
+  tiff-dev \
+  libwebp-dev \
+  harfbuzz-dev \
+  fribidi-dev \
+  && ln -sf python3 /usr/bin/python
+
 RUN pip3 install --no-cache --upgrade pip setuptools img2webp -U --break-system-packages
 RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku -U --break-system-packages
 
