@@ -17,7 +17,10 @@ LABEL org.opencontainers.image.vendor="TrafeX"
 LABEL org.opencontainers.image.title="PHP-FPM 8.5 & Nginx on Alpine Linux"
 LABEL org.opencontainers.image.description="Lightweight container with Nginx 1.28 & PHP 8.5 based on Alpine Linux."
 
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED=1 \
+  HOME=/tmp \
+  NPM_CONFIG_CACHE=/tmp/.npm \
+  npm_config_cache=/tmp/.npm
 
 # Setup document root
 WORKDIR /var/www/html
@@ -25,8 +28,12 @@ WORKDIR /var/www/html
 # Install packages and remove default server definition
 RUN apk add --no-cache \
   curl \
+  git \
   nginx \
   imagemagick \
+  nodejs \
+  npm \
+  openssh-client \
   php85 \
   php85-ctype \
   php85-curl \
@@ -67,6 +74,11 @@ RUN apk add --update --no-cache \
 RUN pip3 install --no-cache --upgrade pip setuptools img2webp -U --break-system-packages
 RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku -U --break-system-packages
 RUN ln -sf /usr/bin/php85 /usr/bin/php
+
+# Allow Git operations on bind-mounted repositories, which often have host-owned files.
+RUN git config --system --add safe.directory '*' \
+  && mkdir -p /tmp/.npm \
+  && chown -R nobody:nobody /tmp/.npm
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
