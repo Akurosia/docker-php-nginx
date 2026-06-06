@@ -15,7 +15,7 @@ LABEL org.opencontainers.image.version="${VERSION}"
 LABEL org.opencontainers.image.revision="${VCS_REF}"
 LABEL org.opencontainers.image.vendor="TrafeX"
 LABEL org.opencontainers.image.title="PHP-FPM 8.5 & Nginx on Alpine Linux"
-LABEL org.opencontainers.image.description="Lightweight container with Nginx 1.28 & PHP 8.5 based on Alpine Linux."
+LABEL org.opencontainers.image.description="Lightweight container with Nginx 1.28.3 & PHP 8.5 based on Alpine Linux."
 
 ENV PYTHONUNBUFFERED=1 \
   HOME=/tmp \
