@@ -71,8 +71,8 @@ RUN apk add --update --no-cache \
   fribidi-dev \
   && ln -sf python3 /usr/bin/python
 
-RUN pip3 install --no-cache --upgrade pip setuptools img2webp -U --break-system-packages
-RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku -U --break-system-packages
+RUN pip3 install --no-cache --upgrade pip setuptools img2webp demjson3 json5 -U --break-system-packages
+RUN pip3 install --extra-index-url https://pip.akurosia.de/simple ffxiv_aku demjson3 json5 -U --break-system-packages
 RUN ln -sf /usr/bin/php85 /usr/bin/php
 
 # Allow Git operations on bind-mounted repositories, which often have host-owned files.
