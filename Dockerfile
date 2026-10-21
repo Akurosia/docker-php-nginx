@@ -1,4 +1,5 @@
-FROM alpine:3.24.2
+#FROM alpine:3.24.2
+FROM php:8.5-fpm-alpine
 
 # Build metadata arguments
 ARG BUILD_DATE
